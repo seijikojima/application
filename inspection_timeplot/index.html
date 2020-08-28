@@ -1,4 +1,3 @@
-
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
 <script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
@@ -8,12 +7,15 @@
 
 <div id="app">
 
-  
+    <!-- <h1>Inspection Timeplot</h1> -->
 
     <div class="chart_frame">
 
+      <div class="img_frame">
       <img :src="img_path" width="200px">
-      <div style="text-align :center">{{time}} {{img_path}} NG確率 : {{ng_prob}}%</div>
+      </div>
+
+      <div style="text-align :center">{{time}} {{id}}.png NG確率 : {{ng_prob}}%</div>
 
       <canvas id="myLineChart"></canvas>
       
@@ -31,10 +33,11 @@ var app = new Vue({
     return {
         id : 1,
         img_path : "./img/1.png",
-        prob_table : [0,2.2,4.8,3.4,99.6,2.8,1,3,97.4,1.2,2.3,3.9],
-        time : "スタート",
-        message : "hello",
-        labels : ["スタート"],
+        prob_table : [null,3.3,2.6,99.6,2.8,
+                      1.7,97.4,1.2,2.3,3.9,
+                      1.2,92.3,93.9,1.2,2.3],
+        time : "start",
+        labels : ["start"],
         ts : [0],
         ng_prob : 3.3
     }
@@ -50,19 +53,23 @@ var app = new Vue({
         labels : this.labels,
         datasets: [
           {
-            label: '気温',
+            label: 'NG Probability Timeplot',
             data : this.ts,
             // data : [100,200,300,100],
-            borderColor: "rgba(255,0,0,1)",
+            borderColor: "rgb(231,109,60)",
             backgroundColor: "rgba(0,0,0,0)",
+            pointBorderColor : "rgb(77,59,71)",
             lineTension : 0
           }
         ],
       },
       options: {
         title: {
-          display: true,
+          // display: false, 
           // text: 'absorption data'
+        },
+        legend : {
+          display : false // 四角いやつ
         },
         scales: {
           yAxes: [{
@@ -90,7 +97,7 @@ var app = new Vue({
       this.time = today.getHours() + "時" + today.getMinutes() + "分" + today.getSeconds() + "秒";
       
       
-      this.img_path = "./img/" + String(this.id) + ".png"
+      this.img_path = "./img/" + String(this.id+1) + ".png"
 
       this.labels.push(this.time)
 
@@ -100,9 +107,9 @@ var app = new Vue({
 
       this.ts.push(this.ng_prob);
     
-    if (this.id >= 9 ) this.id = 0
+    if (this.id >= 14 ) this.id = 0
     
-    if (this.ts.length >= 9 ){
+    if (this.ts.length >= 14 ){
       this.ts.shift()
       this.labels.shift()
     }
@@ -124,7 +131,7 @@ var app = new Vue({
 
     this.render_chart();
     
-    setInterval(this.execute_inspection,3000);
+    setInterval(this.execute_inspection,2000);
 
     
 
@@ -159,11 +166,28 @@ td {
 .chart_frame{
   /* height:500px; */
   /* width:600px;  */
-
+  padding : 10px;
   text-align : center;
   width : 80%;
   margin:50px auto;
-  border : solid 1px #aaa;
+  /* border : solid 1px #bbb; */
+  border-radius: 5px;
+  box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+  transition: .3s;
+}
+
+
+.chart_frame:hover {
+  box-shadow: 0px 20px 40px rgba(0,0,0,0.4);
+  /* transform: scale(1.05,1.05); */
+}
+
+
+
+
+.img_frame {
+  /* border : solid 2px #000; */
+  padding : 10px;
 }
 
 
