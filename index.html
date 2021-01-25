@@ -11,10 +11,12 @@
     <div class="box">
     <div class="title">Application</div>
 
-    <ol>
+    <ul>
         <li><a href="https://seijikojima.github.io/application/inspection_timeplot">inspection timeplot</a></li>
         <li><a href="http://seijikojima.com:9001">book list</a></li>
-    </ol>
+        <li><a href="http://seijikojima.com:9002">heatmap dashboard</a></li>
+
+    </ul>
 
    </div>
 </body>
@@ -28,41 +30,33 @@
 }
 
 .title{
-    font-family: 'Bradley Hand','Segoe Script','Segoe Print',sans-serif;/*手書き風のフォント*/
+    /* font-family: 'Bradley Hand','Segoe Script','Segoe Print',sans-serif; */
     font-size: 1.3em;/*フォントサイズ*/
 }
-
-ol {
-  counter-reset:number; /*数字をリセット*/
-  list-style-type: none!important; /*数字を一旦消す*/
-  padding:0;
-  border-top: solid 2px black;
-  border-bottom: solid 2px black;
-}
-ol li {
-  padding: 0.5em 0;
-  position: relative;
-  padding-left: 1.4em;
-  line-height: 1.5em;
-}
-ol li:before{
-  counter-increment: number;
-  content: counter(number) ".";
-  position: absolute;
-  left: 0;
-  font-family: 'Bradley Hand','Segoe Script','Segoe Print',sans-serif;/*手書き風のフォント*/
-  font-size: 1.3em;/*フォントサイズ*/
+ul {
+  padding: 0;
 }
 
+ul li, ol li {
+  color: #404040;
+  border-left: solid 6px #168d66;/*左側の線*/
+  border-bottom: solid 2px #dadada;/*下に灰色線*/
+  background: whitesmoke;
+  margin-bottom: 5px;/*下のバーとの余白*/
+  line-height: 1.5;
+  padding: 0.5em;
+  list-style-type: none!important;/*ポチ消す*/
+  font-weight: bold;
+}
 a { 
     text-decoration: none;
-    font-family: 'Bradley Hand','Segoe Script','Segoe Print',sans-serif;/*手書き風のフォント*/
+    /* font-family: 'Bradley Hand','Segoe Script','Segoe Print',sans-serif; */
     font-size: 1.3em;/*フォントサイズ*/
     color : #000;
  }
 
  a:hover {
-     color : rgb(51, 83, 157);
+     color : #168d66;
  }
 
 </style>
