@@ -33,8 +33,8 @@ var app = new Vue({
     return {
         id : 1,
         img_path : "./img/1.png",
-        prob_table : [null,3.3,2.6,99.6,2.8,
-                      1.7,97.4,1.2,2.3,3.9,
+        prob_table : [3.3,2.6,99.6,2.8,
+                      1.7,97.4,1.2,2.3,27.2,
                       1.2,92.3,93.9,1.2,2.3],
         time : "start",
         labels : ["start"],
@@ -94,12 +94,8 @@ var app = new Vue({
 
     execute_inspection : function (){
 
-
-   
-    
       var today = new Date();
       this.time = today.getHours() + "時" + today.getMinutes() + "分" + today.getSeconds() + "秒";
-      
       
       this.img_path = "./img/" + String(this.id+1) + ".png"
 
@@ -111,20 +107,24 @@ var app = new Vue({
 
       this.ts.push(this.ng_prob);
     
-    if (this.id >= 14 ) this.id = 0
-    
-    if (this.ts.length >= 14 ){
+
+    if (this.id >=13) {
+      this.id = 0
+      this.img_path = "./img/" + String(this.id+1) + ".png"
+      this.ng_prob = this.prob_table[this.id]
+    }
+
+    if (this.ts.length >= 13 ){
       this.ts.shift()
       this.labels.shift()
+      // this.ts.push(this.prob_table[0])
+      // this.labels.push(this.time)
+      
     }
 
     this.id = this.id + 1
 
     this.render_chart();
-
-    // console.log(this.ts)
-
-    
 
     }
 
@@ -133,9 +133,12 @@ var app = new Vue({
   // ブラウザ起動時に実行
   mounted(){
 
+    var today = new Date();
+    this.time = today.getHours() + "時" + today.getMinutes() + "分" + today.getSeconds() + "秒";
+
     this.render_chart();
     
-    setInterval(this.execute_inspection,2000);
+    setInterval(this.execute_inspection,1800);
 
     
 
