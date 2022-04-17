@@ -40,17 +40,17 @@ ul {
   padding: 0;
 }
 
-ul li, ol li {
+/* ul li, ol li {
   color: #404040;
-  border-left: solid 6px #168d66;/*左側の線*/
-  border-bottom: solid 2px #dadada;/*下に灰色線*/
+  border-left: solid 6px #168d66;
+  border-bottom: solid 2px #dadada;
   background: whitesmoke;
-  margin-bottom: 5px;/*下のバーとの余白*/
+  margin-bottom: 5px;
   line-height: 1.5;
   padding: 0.5em;
-  list-style-type: none!important;/*ポチ消す*/
+  list-style-type: none!important;
   font-weight: bold;
-}
+} */
 a { 
     text-decoration: none;
     /* font-family: 'Bradley Hand','Segoe Script','Segoe Print',sans-serif; */
@@ -60,6 +60,18 @@ a {
 
  a:hover {
      color : #168d66;
+     /* background-color: #000; */
  }
+
+ ul, ol {
+  background: #fcfcfc;/*背景色*/
+  padding: 0.5em 0.5em 0.5em 2em;/*ボックス内の余白*/
+  border: solid 3px gray;/*線の種類 太さ 色*/
+}
+
+ul li, ol li {
+  line-height: 1.5; /*文の行高*/
+  padding: 0.5em 0; /*前後の文との余白*/
+}
 
 </style>
